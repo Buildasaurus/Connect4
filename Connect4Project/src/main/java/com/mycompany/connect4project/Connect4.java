@@ -48,10 +48,10 @@ int gameState=0;
           
         case 0:
               
-         //places piece on board and check for win    
+         //places piece on board and then checks for win    
               
             
-            //Not sure how to make the logic that checks for a gameWin
+            //Tjekker om man vinder på at lave det move
              if (gameWin = true)
               gameState = 2;   
                
@@ -64,14 +64,16 @@ int gameState=0;
               
               
               
-              
+          //Tjekker om man vinder på at lave det move
+             if (gameWin = true)
+              gameState = 2;      
               
               
             break;
             
         case 2:
             
-            
+          //Kør noget kode som genstartet spillet og viser en win message  
             
             
             
@@ -83,7 +85,7 @@ int gameState=0;
     }
 
     @FXML
-    void onMouseReleasedFunction() {
+   void onMouseReleasedFunction() {
   
         
         
@@ -97,6 +99,28 @@ int gameState=0;
         
     }
 
+    
+    void placePiece() {
+        
+        
+        
+        
+        
+        
+        
+        //Det her er kun grafik delen af setPiece
+        //Sets color of piece based on gamestate
+        if(gameState == 0)
+        gc.setFill(Color.BLUE);
+        else gc.setFill(Color.RED);
+     
+        
+        //Princippet er at columnClicked skal være kolonnen man placerer i, og pieceNumberInRow skal være det nummer, som den er i kolonnen.
+        //Altså at placeringen varierer afhængigt af om det er den første brik i kolonnen, eller der er nogen placeret før.
+        gc.fillOval(canvasConnect4.getWidth()/ColumnClicked,canvasConnect4.getHeight()/PieceNumberInRow,2,2);     
+        
+        
+    }
 
     }
 
