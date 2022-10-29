@@ -20,9 +20,9 @@ public class Connect4 {
     @FXML
     GraphicsContext gc;
     
-//Initialize the values for variables
-//Creates gamestate: 0 = RedTurn, 1 = Blue Turn, 2 = GameEnded	
-int gameState=0;
+    //Initialize the values for variables
+    //Creates gamestate: 0 = RedTurn, 1 = Blue Turn, 2 = GameEnded
+    int gameState=0;
 
         
     @FXML
@@ -44,7 +44,8 @@ int gameState=0;
       //All we should need should be the mouseEvents and functions they rely on.
       
       //Create a switch that depends the action on gameState
-      switch(gameState){
+      /*
+        switch(gameState){
           
         case 0:
               
@@ -82,6 +83,8 @@ int gameState=0;
 
           
       }
+
+       */
     }
 
     @FXML
@@ -117,7 +120,7 @@ int gameState=0;
         
         //Princippet er at columnClicked skal være kolonnen man placerer i, og pieceNumberInRow skal være det nummer, som den er i kolonnen.
         //Altså at placeringen varierer afhængigt af om det er den første brik i kolonnen, eller der er nogen placeret før.
-        gc.fillOval(canvasConnect4.getWidth()/ColumnClicked,canvasConnect4.getHeight()/PieceNumberInRow,2,2);     
+        // gc.fillOval(canvasConnect4.getWidth()/ColumnClicked,canvasConnect4.getHeight()/PieceNumberInRow,2,2);
         
         
     }

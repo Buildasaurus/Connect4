@@ -17,6 +17,24 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        Board board = new Board(7, 6);
+
+        board.place(Board.Piece.Red, 0);
+        board.place(Board.Piece.Blue, 0);
+        board.place(Board.Piece.Blue, 1);
+        board.place(Board.Piece.Blue, 1);
+        board.place(Board.Piece.Red, 1);
+        board.place(Board.Piece.Red, 1);
+        board.place(Board.Piece.Red, 1);
+        board.place(Board.Piece.Red, 1);
+        board.place(Board.Piece.Red, 1);
+        board.place(Board.Piece.Red, 1);
+        board.place(Board.Piece.Red, 1);
+        System.out.println(board.place(Board.Piece.Red, 6));
+
+        System.out.println(board);
+
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
