@@ -110,7 +110,73 @@ public class Board {
     /// the column where the new piece has been placed should be passed, so the method only checks necessary pieces.
     protected boolean checkWin(int column)
     {
-        /// TODO: implement this
+        //assuming that free_slots_count has been updated before checkwin is called.
+        
+        //start by checking if there are 4 on top of each other
+        int yplacement = height-free_slots_count[column];
+        if(yplacement > 4) 
+        {
+            //loop through them, and check if they all are the  correct color.
+            for(int i = 0; i < yplacement ; i++)
+            {
+                if(board_pieces[column][yplacement - i] != board_pieces[column][yplacement])
+                {
+                    break; //exits forloop, as there now can't be vertical win
+                }
+            }
+        }
+        
+        int count = 0;
+        int xshift = 1;
+        while (count < 3)
+        {
+            if(board_pieces[column+xshift][yplacement] == board_pieces[column][yplacement])
+            {
+                count++;
+                xshift = xshift + (xshift > 0 ? 1 : -1);
+            }
+            else if(xshift > 0)
+            {
+                xshift = -1;
+            }
+            else
+            {
+                break;
+            }
+        }
+        if(count==3)
+        {
+            return true;
+        }
+        if(yplacement > 4) 
+        {
+            //loop through them, and check if they all are the  correct color.
+            for(int i = 0; i < yplacement ; i++)
+            {
+                if(board_pieces[column][yplacement - i] != board_pieces[column][yplacement])
+                {
+                    break; //exits forloop, as there now can't be vertical win
+                }
+            }
+        }
+        
+        //count horisontal pieces
+        
+        
+        //count diagonal pieces NE SW
+        
+        
+        //count diagonal pieces NW SE
+        
+        int i = 0;
+        int j = 0;
+        //free_slots_count
+        while(true)
+        {
+            if(board_pieces)
+        }
+        Piece a = board_pieces[1][2];
+/// TODO: implement this
         return false;
     }
 

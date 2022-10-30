@@ -36,7 +36,7 @@ public class GameController
 
 
     protected void drawGame()
-    {
+    {        
         /// TODO: implement this
         /// FOR PERSON IMPLEMENTING:
         // base this implementation around the size of the board object
