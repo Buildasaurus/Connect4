@@ -110,7 +110,7 @@ public class Board {
     /// the column where the new piece has been placed should be passed, so the method only checks necessary pieces.
     protected boolean checkWin(int column)
     {
-        /// TODO (JONATHAN): implement this
+        /// TODO: implement this
         return false;
     }
 
