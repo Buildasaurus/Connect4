@@ -20,7 +20,7 @@ public class Board {
         Winning
     }
 
-    // construct a board of size width x height
+    /// construct a board of size width x height
     public Board(int width, int height)
     {
         // construct board and fill with empty pieces
@@ -43,10 +43,10 @@ public class Board {
 
     public Piece viewPiece(int column, int row) { return board_pieces[column][row];}
 
-    // places a piece into the specified board column
-    // if the piece placement results in a win, Winning will be returned
-    // if there is no space for an additional piece, Illegal will be returned
-    // if there is space for a piece, Legal will be returned
+    /// places a piece into the specified board column
+    /// if the piece placement results in a win, Winning will be returned
+    /// if there is no space for an additional piece, Illegal will be returned
+    /// if there is space for a piece, Legal will be returned
     public PlaceResult place(Piece piece, int column)
     {
         // check if there are any free slots left
@@ -106,9 +106,11 @@ public class Board {
         return str.toString();
     }
 
-    /// TODO: implement this
+    /// checks if the board has a winning row (row of same coloured pieces, with a count of at least 4)
+    /// the column where the new piece has been placed should be passed, so the method only checks necessary pieces.
     protected boolean checkWin(int column)
     {
+        /// TODO (JONATHAN): implement this
         return false;
     }
 

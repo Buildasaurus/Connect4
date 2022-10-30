@@ -13,6 +13,7 @@ import java.util.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+/// TODO (PETER): migrate to GameController
 public class Connect4 {
 
     @FXML
