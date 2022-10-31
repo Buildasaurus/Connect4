@@ -14,7 +14,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 /// TODO (PETER): migrate to GameController
-public class Connect4 {
+public class Connect4 
+{
 
     @FXML
     Canvas canvasConnect4;
@@ -104,12 +105,12 @@ public class Connect4 {
     }
 
     
-    void placePiece() {
+    void placePiece() 
+    {
         
         
         //Calculate the column number to place in
         int columnnumber = 0;
-        columbnumber = canvasConnect4.getWidth()/5
         
         
         
@@ -127,6 +128,5 @@ public class Connect4 {
         
         
     }
-
-    }
+}
 

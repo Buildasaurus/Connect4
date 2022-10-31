@@ -20,7 +20,7 @@ public class Board {
         Winning
     }
 
-    /// construct a board of size width x height
+    /// construct a board of size width x height (in pieces, not pixels)
     public Board(int width, int height)
     {
         // construct board and fill with empty pieces

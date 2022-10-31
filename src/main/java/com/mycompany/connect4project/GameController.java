@@ -29,10 +29,10 @@ public class GameController
         game_active = true;
     }
 
-    protected int coordToColumn(int x, int y)
+    protected int coordToColumn(int x) //måske et andet navn? den skal jo kun bruge en x værdi.
     {
-        /// TODO: implement this
-        return -1;
+        //calculates the column, starting on 0.
+        return (int)Math.floor((x*board.width())/(2000)); //where 2000 should be replaced with the width of the canvas
     }
 
 
