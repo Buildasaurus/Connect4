@@ -7,19 +7,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import com.mycompany.connect4project.Board.Piece;
 import com.mycompany.connect4project.Board.PlaceResult;
+import javafx.scene.paint.Color;
+
 import java.util.Random;
 
 public class GameController
 {
-
     public Canvas canvas;
-
 
     @FXML
     public void initialize()
     {
-        newGame();
         gc = canvas.getGraphicsContext2D();
+        newGame();
     }
 
     protected Board board;
@@ -29,6 +29,10 @@ public class GameController
     protected Piece active_piece = randomPiece();
     /// stores the graphics context of the controllers canvas.
     protected GraphicsContext gc;
+    protected int slot_size = 50;
+    protected int piece_size = 30;
+    protected int top_height = 2;
+    protected int mouse_x = -1;
 
     /// restarts the current game and initializes an empty board, with size 7 X 6
     protected void newGame()
@@ -36,18 +40,22 @@ public class GameController
         board = new Board(7, 6);
         game_active = true;
         active_piece = randomPiece();
+
+        drawGame();
     }
 
 
     protected int coordToColumn(int x)
     {
         //calculates the column, starting on 0.
-        return (int)(x * board.width() / canvas.getWidth());
+        return Math.min(Math.max(0, (int)(x / slot_size)), board.width() - 1);
     }
 
 
     protected void drawGame()
-    {        
+    {
+        // var gc = canvas.getGraphicsContext2D();
+
         /// TODO: implement this
         /// FOR PERSON IMPLEMENTING:
         // base this implementation around the size of the board object
@@ -56,7 +64,56 @@ public class GameController
         // also remember to add some small margins to the left right and bottom, and a larger margin at the top,
         // to make place for the hovering piece.
 
+        gc.setFill(Color.LIGHTBLUE);
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        gc.setFill(Color.DARKBLUE);
+        gc.fillRect(0, top_height * slot_size,
+                board.width() * slot_size, board.height() * slot_size);
+
+
+        // draw the board pieces
+
+        for(int x = 0; x < board.width(); x++)
+        {
+            for(int y = 0; y < board.height(); y++)
+            {
+                drawPiece(x, y + top_height, board.viewPiece(x, y));
+            }
+        }
+
         // the hovering piece should only be drawn if game_active is true.
+
+        if(game_active)
+        {
+            drawPiece(coordToColumn(mouse_x), 0, active_piece);
+        }
+
+    }
+
+    void drawPiece(int c, int r, Piece piece)
+    {
+        switch (piece)
+        {
+            case Empty:
+                gc.setFill(Color.LIGHTBLUE);
+                break;
+            case Red:
+                gc.setFill(Color.RED);
+                break;
+            case Blue:
+                gc.setFill(Color.BLUE);
+                break;
+        }
+
+        int x = c * slot_size;
+        int y = r * slot_size;
+        int margin = (slot_size - piece_size) / 2;
+
+        x -= margin / 2;
+        y -= margin / 2;
+
+        gc.fillOval(x + margin, y + margin, slot_size - margin, slot_size - margin);
 
     }
 
@@ -79,8 +136,9 @@ public class GameController
                 active_piece = active_piece == Piece.Red ? Piece.Blue : Piece.Red;
                 break;
             case Winning:
-                drawResult();
-                game_active = false;
+                // drawResult();
+                // game_active = false;
+                break;
         }
     }
 
@@ -103,8 +161,9 @@ public class GameController
     }
 
     @FXML
-    public void onMouseMove(MouseEvent mouseEvent)
+    public void onMouseMove(MouseEvent mouse_event)
     {
+        mouse_x = (int)mouse_event.getX();
         drawGame();
     }
     

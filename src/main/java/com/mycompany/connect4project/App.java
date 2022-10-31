@@ -20,6 +20,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException
     {
         scene = new Scene(loadFXML("connect4"), 640, 480);
+        stage.setTitle("Connect 4 ℗eteright ℗eterStentoft Buildasaurus Karstensensensen");
         stage.setScene(scene);
         stage.show();
     }
