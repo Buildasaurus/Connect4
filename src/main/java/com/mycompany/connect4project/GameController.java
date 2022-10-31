@@ -65,10 +65,10 @@ public class GameController
         switch(active_piece)
         {
             case Red:
-                gc.strokeText("Hello Canvas", 200, 20);
+                gc.strokeText("Red wins", 200, 20);
 
             case Blue:
-                gc.strokeText("Hello Canvas", 100, 200);
+                gc.strokeText("Blue wins", 100, 200);
         }
 
 
