@@ -152,28 +152,27 @@ public class Board {
         return false;
     }
     
-    private int checkDirection(int x, int y, int column, int yplacement) //x and y should be either 0, -1 or 1
+    private int checkDirection(int x_off, int y_off, int column, int yplacement) //x and y should be either 0, -1 or 1
     {
+        int x = column + x_off;
+        int y = yplacement + y_off;
+
         int count = 0;
         //Start by checking if you can go the direction
-        if(column + x >= width()  || x < 0 || yplacement + y >= height() || y < 0)
+        if(x >= width()  || x < 0 ||  y >= height() || y < 0)
         {
             return count;
         }
         while(count<4)
         {
-            if(board_pieces[column][yplacement] == board_pieces[column+x][yplacement+y])
+            if(board_pieces[column][yplacement] == board_pieces[x][y])
             {
                 count++;
-                if(x != 0)
-                {
-                    x = x + (x > 0 ? 1 : -1);
-                }
-                if(y != 0)
-                {
-                    y = y + (y > 0 ? 1 : -1);
-                }
-                if(column + x >= width() || x < 0 || yplacement + y >= height() || y < 0)
+
+                x += x_off;
+                y += y_off;
+
+                if(x >= width() || x < 0 ||  y >= height() || y < 0)
                 {
                     return count;
                 }
