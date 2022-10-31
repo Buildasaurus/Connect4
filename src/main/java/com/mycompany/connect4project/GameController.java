@@ -19,6 +19,13 @@ public class GameController
     public void initialize()
     {
         gc = canvas.getGraphicsContext2D();
+        canvas.widthProperty().addListener((obs, oldVal, newVal) -> {
+            System.out.println("EEE");
+        });
+
+        canvas.heightProperty().addListener((obs, oldVal, newVal) -> {
+            // Do whatever you want
+        });
         newGame();
     }
 
@@ -29,10 +36,11 @@ public class GameController
     protected Piece active_piece = randomPiece();
     /// stores the graphics context of the controllers canvas.
     protected GraphicsContext gc;
-    protected int slot_size = 50;
-    protected int piece_size = 30;
+    protected int slot_size = 75;
+    protected int piece_size = 50;
     protected int top_height = 2;
     protected int mouse_x = -1;
+    protected int width_margin = 137;
 
     /// restarts the current game and initializes an empty board, with size 7 X 6
     protected void newGame()
@@ -48,7 +56,7 @@ public class GameController
     protected int coordToColumn(int x)
     {
         //calculates the column, starting on 0.
-        return Math.min(Math.max(0, (int)(x / slot_size)), board.width() - 1);
+        return Math.min(Math.max(0, (int)((x - width_margin) / slot_size)), board.width() - 1);
     }
 
 
@@ -68,7 +76,7 @@ public class GameController
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         gc.setFill(Color.DARKBLUE);
-        gc.fillRect(0, top_height * slot_size,
+        gc.fillRect(width_margin, top_height * slot_size,
                 board.width() * slot_size, board.height() * slot_size);
 
 
@@ -106,7 +114,7 @@ public class GameController
                 break;
         }
 
-        int x = c * slot_size;
+        int x = c * slot_size + width_margin;
         int y = r * slot_size;
         int margin = (slot_size - piece_size) / 2;
 
