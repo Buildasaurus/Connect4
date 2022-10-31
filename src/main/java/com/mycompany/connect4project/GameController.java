@@ -10,12 +10,26 @@ import com.mycompany.connect4project.Board.PlaceResult;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
 public class GameController
 {
-    public Canvas canvas;
 
+    public Canvas canvas;
+    
     @FXML
+    Button restartGameButton = new Button();
+    @FXML
+    Text gameDrawn = new Text();
+    @FXML
+    Text blueWin = new Text();
+    @FXML
+    Text redWin = new Text();
+    
+    
+    
+    //@FXML
     public void initialize()
     {
         gc = canvas.getGraphicsContext2D();
@@ -36,12 +50,16 @@ public class GameController
     protected int width_margin = 137;
 
     /// restarts the current game and initializes an empty board, with size 7 X 6
+    @FXML
     protected void newGame()
     {
         board = new Board(7, 6);
         game_active = true;
         active_piece = randomPiece();
-
+        restartGameButton.setVisible(false);
+        redWin.setVisible(false);
+        blueWin.setVisible(false);
+        gameDrawn.setVisible(false);
         drawGame();
     }
 
@@ -121,6 +139,20 @@ public class GameController
         /// TODO: implement this
         /// should probably display "RED/BLUE WINS" / "DRAW"
         /// followed by a restart button or something.
+        restartGameButton.setVisible(true);
+        switch (active_piece){
+            case Red:
+                redWin.setVisible(true);
+                        break;
+            case Blue:
+                blueWin.setVisible(true);
+                        break;
+                
+            case Empty:
+                gameDrawn.setVisible(true);
+                break;
+                
+        }
     }
 
     /// places a piece from the currently active colour,
@@ -145,7 +177,7 @@ public class GameController
                 }
                 break;
             case Winning:
-                // drawResult();
+                drawResult();
                 // game_active = false;
                 break;
         }
