@@ -124,97 +124,66 @@ public class Board {
         //assuming that free_slots_count has been updated before checkwin is called.
         
         //start by checking if there are 4 on top of each other
-        int yplacement = height-free_slots_count[column];
-        if(yplacement > 4) 
+        int yplacement = free_slots_count[column];
+ 
+        int[][][] directions = {
+            {{1,0}, {-1,0}},
+            {{0,1}},
+            {{1,1}, {-1,-1}},
+            {{-1,1}, {-1, 1}},
+        };
+
+        for(int i = 0; i < directions.length; i++)
         {
-            //loop through them, and check if they all are the  correct color.
-            for(int i = 0; i < yplacement ; i++)
+            int count = 0;
+            for(int j = 0; j < directions[i].length; j++)
             {
-                if(board_pieces[column][yplacement - i] != board_pieces[column][yplacement])
+                count += checkDirection(directions[i][j][0], 
+                        directions[i][j][1], column, yplacement);
+                System.out.println(count);
+                System.out.println("i er: " + i);
+                if (count >= 3)
                 {
-                    break; //exits forloop, as there now can't be vertical win
+                    System.out.println("jaa");
+                    return true;
                 }
             }
         }
-        
-        
-        //check horizontal pieces
+        return false;
+    }
+    
+    private int checkDirection(int x, int y, int column, int yplacement) //x and y should be either 0, -1 or 1
+    {
         int count = 0;
-        int xshift = 1;
-        while (count < 3)
+        //Start by checking if you can go the direction
+        if(column + x > width() -1 || yplacement + y > height() - 1)
         {
-            if(board_pieces[column+xshift][yplacement] == board_pieces[column][yplacement])
+            return count;
+        }
+        while(count<4)
+        {
+            if(board_pieces[column][yplacement] == board_pieces[column+x][yplacement+y])
             {
                 count++;
-                xshift = xshift + (xshift > 0 ? 1 : -1);
-            }
-            else if(xshift > 0)
-            {
-                xshift = -1;
+                if(x != 0)
+                {
+                    x = x + (x > 0 ? 1 : -1);
+                }
+                if(y != 0)
+                {
+                    y = y + (y > 0 ? 1 : -1);
+                }
+                if(column + x >= width() || yplacement + y >= height())
+                {
+                    return count;
+                }
             }
             else
             {
-                break;
+                return count;
             }
         }
-        if(count == 3)
-        {
-            return true;
-        }
-        
-        
-        //check diagonal pieces NE SW
-        count = 0;
-        xshift = 1;
-        while(count<3)
-        {
-            if(board_pieces[column+xshift][yplacement-xshift] == board_pieces[column][yplacement])
-            {
-                count++;
-                xshift = xshift + (xshift > 0 ? 1 : -1);
-            }
-            else if(xshift > 0)
-            {
-                xshift = -1;
-            }
-            else
-            {
-                break;
-            }
-        }
-        if(count == 3)
-        {
-            return true;
-        }
-        
-        
-        //count diagonal pieces NW SE
-        count = 0;
-        xshift = 1;
-        while(count<3)
-        {
-            if(board_pieces[column+xshift][yplacement-xshift] == board_pieces[column][yplacement])
-            {
-                count++;
-                xshift = xshift + (xshift > 0 ? 1 : -1);
-            }
-            else if(xshift > 0)
-            {
-                xshift = -1;
-            }
-            else
-            {
-                break;
-            }
-        }
-        if(count == 3)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return -1;
     }
 
     protected Piece[][] board_pieces;

@@ -110,6 +110,7 @@ public class GameController
 
     void drawPiece(int c, int r, Piece piece)
     {
+<<<<<<< Updated upstream
         switch (piece)
         {
             case Empty:
@@ -136,6 +137,8 @@ public class GameController
 
     protected void drawResult()
     {
+=======
+>>>>>>> Stashed changes
         /// TODO: implement this
         /// should probably display "RED/BLUE WINS" / "DRAW"
         /// followed by a restart button or something.
@@ -198,7 +201,9 @@ public class GameController
         if(game_active)
             place(coordToColumn((int)mouse_event.getX()));
 
+        
         drawGame();
+        test_function();
     }
 
     @FXML
@@ -212,5 +217,32 @@ public class GameController
     {
         int rand = new Random().nextInt(2);
         return rand == 0 ? Piece.Red : Piece.Blue;
+    }
+    
+    private void test_function() //spiller et spil 4 på stribe
+    {
+        System.out.println(board.place(Piece.Red, 2));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Blue, 1));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 3));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 4));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 6));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 3));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 6));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 4));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 4));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 4));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 4));
+        System.out.println(board);
+        
     }
 }
