@@ -67,7 +67,7 @@ public class Connect4 {
               
               
           //Tjekker om man vinder på at lave det move
-             if (gameWin = true)
+             if (gameWin == true)
               gameState = 2;      
               
               
@@ -107,7 +107,9 @@ public class Connect4 {
     void placePiece() {
         
         
-        
+        //Calculate the column number to place in
+        int columnnumber = 0;
+        columbnumber = canvasConnect4.getWidth()/5
         
         
         

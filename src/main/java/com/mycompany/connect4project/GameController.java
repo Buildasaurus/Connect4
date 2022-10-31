@@ -5,6 +5,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import com.mycompany.connect4project.Board.Piece;
 import com.mycompany.connect4project.Board.PlaceResult;
+import java.util.Random;
 
 public class GameController
 {
@@ -19,7 +20,7 @@ public class GameController
     /// true if the game is currently active, and user inputs should be used to modify the game board.
     protected boolean game_active = true;
     /// holds the piece colour of the active player.
-    protected Piece active_piece = Piece.Blue; // TODO: should be random?
+    protected Piece active_piece = randomPiece();
 
     /// restarts the current game and initializes an empty board, with size 7 X 6
     protected void newGame()
@@ -95,5 +96,11 @@ public class GameController
     public void onMouseMove(MouseEvent mouseEvent)
     {
         drawGame();
+    }
+    
+    private Piece randomPiece()
+    {
+        int rand = new Random().nextInt();
+        return Piece.values()[rand];
     }
 }

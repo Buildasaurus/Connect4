@@ -126,6 +126,8 @@ public class Board {
             }
         }
         
+        
+        //check horizontal pieces
         int count = 0;
         int xshift = 1;
         while (count < 3)
@@ -144,40 +146,64 @@ public class Board {
                 break;
             }
         }
-        if(count==3)
+        if(count == 3)
         {
             return true;
         }
-        if(yplacement > 4) 
+        
+        
+        //check diagonal pieces NE SW
+        count = 0;
+        xshift = 1;
+        while(count<3)
         {
-            //loop through them, and check if they all are the  correct color.
-            for(int i = 0; i < yplacement ; i++)
+            if(board_pieces[column+xshift][yplacement-xshift] == board_pieces[column][yplacement])
             {
-                if(board_pieces[column][yplacement - i] != board_pieces[column][yplacement])
-                {
-                    break; //exits forloop, as there now can't be vertical win
-                }
+                count++;
+                xshift = xshift + (xshift > 0 ? 1 : -1);
+            }
+            else if(xshift > 0)
+            {
+                xshift = -1;
+            }
+            else
+            {
+                break;
             }
         }
-        
-        //count horisontal pieces
-        
-        
-        //count diagonal pieces NE SW
+        if(count == 3)
+        {
+            return true;
+        }
         
         
         //count diagonal pieces NW SE
-        
-        int i = 0;
-        int j = 0;
-        //free_slots_count
-        while(true)
+        count = 0;
+        xshift = 1;
+        while(count<3)
         {
-            if(board_pieces)
+            if(board_pieces[column+xshift][yplacement-xshift] == board_pieces[column][yplacement])
+            {
+                count++;
+                xshift = xshift + (xshift > 0 ? 1 : -1);
+            }
+            else if(xshift > 0)
+            {
+                xshift = -1;
+            }
+            else
+            {
+                break;
+            }
         }
-        Piece a = board_pieces[1][2];
-/// TODO: implement this
-        return false;
+        if(count == 3)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     protected Piece[][] board_pieces;
