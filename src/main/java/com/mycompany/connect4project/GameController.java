@@ -178,7 +178,7 @@ public class GameController
                 break;
             case Winning:
                 drawResult();
-                // game_active = false;
+                game_active = false;
                 break;
         }
     }
