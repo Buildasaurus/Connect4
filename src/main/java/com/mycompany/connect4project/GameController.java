@@ -29,7 +29,7 @@ public class GameController
     
     
     
-    //@FXML
+    @FXML
     public void initialize()
     {
         gc = canvas.getGraphicsContext2D();
@@ -43,10 +43,15 @@ public class GameController
     protected Piece active_piece = randomPiece();
     /// stores the graphics context of the controllers canvas.
     protected GraphicsContext gc;
+    /// the size, in pixels, of a single slot on the board
     protected int slot_size = 75;
+    /// the size of a piece on the board
     protected int piece_size = 50;
+    /// how many pieces that should be made room for, above the board
     protected int top_height = 2;
+    /// x position of mouse, relative to canvas
     protected int mouse_x = -1;
+    /// how much space is left to the sides of the board, when drawn.
     protected int width_margin = 137;
 
     /// restarts the current game and initializes an empty board, with size 7 X 6
@@ -73,14 +78,8 @@ public class GameController
 
     protected void drawGame()
     {
-        /// TODO: implement this
-        /// FOR PERSON IMPLEMENTING:
-        // base this implementation around the size of the board object
-        // (board.width() and board.height() methods should be used)
-        //
-        // also remember to add some small margins to the left right and bottom, and a larger margin at the top,
-        // to make place for the hovering piece.
 
+        // clear canvas and draw board
         gc.setFill(Color.LIGHTBLUE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -110,6 +109,8 @@ public class GameController
 
     void drawPiece(int c, int r, Piece piece)
     {
+        // set the piece colour and draw the piece.
+        // the piece is slightly offset relative to the slot, so it fits exactly in the middle of said slot.
         switch (piece)
         {
             case Empty:
@@ -136,9 +137,8 @@ public class GameController
 
     protected void drawResult()
     {
-        /// TODO: implement this
-        /// should probably display "RED/BLUE WINS" / "DRAW"
-        /// followed by a restart button or something.
+        // displays "RED/BLUE WINS" / "DRAW"
+        // followed by a restart button.
         restartGameButton.setVisible(true);
         switch (active_piece){
             case Red:
@@ -156,7 +156,7 @@ public class GameController
     }
 
     /// places a piece from the currently active colour,
-    // if the placement is legal, the active player is also swapped
+    /// if the placement is legal, the active player is also swapped
     protected void place(int column)
     {
         PlaceResult place_result = board.place(active_piece, column);
@@ -164,7 +164,7 @@ public class GameController
         switch(place_result)
         {
             case Legal:
-                if(board.isDraw())
+                if(board.isDraw()) // a legal move can result in a draw, so only check it here
                 {
                     System.out.println("DRAW");
                     active_piece = Piece.Empty;
@@ -184,14 +184,6 @@ public class GameController
     }
 
     // ============ EVENTS ============
-
-    // not sure what event this should be
-    @FXML
-    public void onKeyTyped(KeyEvent keyEvent)
-    {
-        System.out.println(keyEvent);
-    }
-
     @FXML
     public void onMouseClick(MouseEvent mouse_event)
     {
@@ -215,7 +207,7 @@ public class GameController
         return rand == 0 ? Piece.Red : Piece.Blue;
     }
     
-    private void test_function() //spiller et spil 4 på stribe
+    private void test_function() //plays a game of connect 4, for testing the board class
     {
         System.out.println(board.place(Piece.Blue, 3));
         System.out.println(board);

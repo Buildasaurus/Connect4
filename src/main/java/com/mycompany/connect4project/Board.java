@@ -151,7 +151,8 @@ public class Board {
         }
         return false;
     }
-    
+
+
     private int checkDirection(int x_off, int y_off, int column, int yplacement) //x and y should be either 0, -1 or 1
     {
         int x = column + x_off;
