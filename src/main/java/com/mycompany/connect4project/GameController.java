@@ -110,7 +110,6 @@ public class GameController
 
     void drawPiece(int c, int r, Piece piece)
     {
-<<<<<<< Updated upstream
         switch (piece)
         {
             case Empty:
@@ -137,8 +136,6 @@ public class GameController
 
     protected void drawResult()
     {
-=======
->>>>>>> Stashed changes
         /// TODO: implement this
         /// should probably display "RED/BLUE WINS" / "DRAW"
         /// followed by a restart button or something.
@@ -203,7 +200,6 @@ public class GameController
 
         
         drawGame();
-        test_function();
     }
 
     @FXML
