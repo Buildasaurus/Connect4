@@ -217,28 +217,19 @@ public class GameController
     
     private void test_function() //spiller et spil 4 på stribe
     {
+        System.out.println(board.place(Piece.Blue, 3));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Blue, 4));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Blue, 4));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 4));
+        System.out.println(board);
+        System.out.println(board.place(Piece.Red, 3));
+        System.out.println(board);
         System.out.println(board.place(Piece.Red, 2));
         System.out.println(board);
-        System.out.println(board.place(Piece.Blue, 1));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 3));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 4));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 6));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 3));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 6));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 4));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 4));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 4));
-        System.out.println(board);
-        System.out.println(board.place(Piece.Red, 4));
-        System.out.println(board);
+
         
     }
 }
