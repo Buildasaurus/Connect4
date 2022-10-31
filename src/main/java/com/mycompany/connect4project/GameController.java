@@ -1,6 +1,8 @@
 package com.mycompany.connect4project;
 
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import com.mycompany.connect4project.Board.Piece;
@@ -10,10 +12,14 @@ import java.util.Random;
 public class GameController
 {
 
+    public Canvas canvas;
+
+
     @FXML
     public void initialize()
     {
         newGame();
+        gc = canvas.getGraphicsContext2D();
     }
 
     protected Board board;
@@ -21,18 +27,22 @@ public class GameController
     protected boolean game_active = true;
     /// holds the piece colour of the active player.
     protected Piece active_piece = randomPiece();
+    /// stores the graphics context of the controllers canvas.
+    protected GraphicsContext gc;
 
     /// restarts the current game and initializes an empty board, with size 7 X 6
     protected void newGame()
     {
         board = new Board(7, 6);
         game_active = true;
+        active_piece = randomPiece();
     }
 
-    protected int coordToColumn(int x) //måske et andet navn? den skal jo kun bruge en x værdi.
+
+    protected int coordToColumn(int x)
     {
         //calculates the column, starting on 0.
-        return (int)Math.floor((x*board.width())/(2000)); //where 2000 should be replaced with the width of the canvas
+        return (int)(x * board.width() / canvas.getWidth());
     }
 
 
@@ -72,7 +82,6 @@ public class GameController
                 drawResult();
                 game_active = false;
         }
-
     }
 
     // ============ EVENTS ============
@@ -88,7 +97,8 @@ public class GameController
     public void onMouseClick(MouseEvent mouse_event)
     {
         if(game_active)
-            place(coordToColumn((int)mouse_event.getX(), (int)mouse_event.getY()));
+            place(coordToColumn((int)mouse_event.getX()));
+
         drawGame();
     }
 
@@ -100,7 +110,7 @@ public class GameController
     
     private Piece randomPiece()
     {
-        int rand = new Random().nextInt();
-        return Piece.values()[rand];
+        int rand = new Random().nextInt(2);
+        return rand == 0 ? Piece.Red : Piece.Blue;
     }
 }
