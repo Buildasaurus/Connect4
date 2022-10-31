@@ -19,13 +19,6 @@ public class GameController
     public void initialize()
     {
         gc = canvas.getGraphicsContext2D();
-        canvas.widthProperty().addListener((obs, oldVal, newVal) -> {
-            System.out.println("EEE");
-        });
-
-        canvas.heightProperty().addListener((obs, oldVal, newVal) -> {
-            // Do whatever you want
-        });
         newGame();
     }
 
@@ -62,8 +55,6 @@ public class GameController
 
     protected void drawGame()
     {
-        // var gc = canvas.getGraphicsContext2D();
-
         /// TODO: implement this
         /// FOR PERSON IMPLEMENTING:
         // base this implementation around the size of the board object
@@ -141,7 +132,17 @@ public class GameController
         switch(place_result)
         {
             case Legal:
-                active_piece = active_piece == Piece.Red ? Piece.Blue : Piece.Red;
+                if(board.isDraw())
+                {
+                    System.out.println("DRAW");
+                    active_piece = Piece.Empty;
+                    game_active = false;
+                    drawResult();
+                }
+                else
+                {
+                    active_piece = active_piece == Piece.Red ? Piece.Blue : Piece.Red;
+                }
                 break;
             case Winning:
                 // drawResult();

@@ -106,6 +106,17 @@ public class Board {
         return str.toString();
     }
 
+    /// checks if the game is currently a draw
+    /// does this by checking if any pieces are left, and assumes the game was not won.
+    protected boolean isDraw()
+    {
+        for(int slots : free_slots_count)
+            if(slots != 0)
+                return false;
+
+        return true;
+    }
+
     /// checks if the board has a winning row (row of same coloured pieces, with a count of at least 4)
     /// the column where the new piece has been placed should be passed, so the method only checks necessary pieces.
     protected boolean checkWin(int column)
