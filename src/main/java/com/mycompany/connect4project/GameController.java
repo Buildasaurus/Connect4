@@ -60,8 +60,18 @@ public class GameController
 
     }
 
-    protected void drawResult()
+    protected void drawResult()//assuming active piece is the winning piece.
     {
+        switch(active_piece)
+        {
+            case Red:
+                gc.strokeText("Hello Canvas", 200, 20);
+
+            case Blue:
+                gc.strokeText("Hello Canvas", 100, 200);
+        }
+
+
         /// TODO: implement this
         /// should probably display "RED/BLUE WINS" / "DRAW"
         /// followed by a restart button or something.
@@ -105,7 +115,7 @@ public class GameController
     @FXML
     public void onMouseMove(MouseEvent mouseEvent)
     {
-        drawGame();
+        drawResult();
     }
     
     private Piece randomPiece()
