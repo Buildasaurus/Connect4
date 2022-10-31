@@ -130,7 +130,7 @@ public class Board {
             {{1,0}, {-1,0}},
             {{0,1}},
             {{1,1}, {-1,-1}},
-            {{-1,1}, {-1, 1}},
+            {{-1,1}, {1, -1}},
         };
 
         for(int i = 0; i < directions.length; i++)
@@ -156,7 +156,7 @@ public class Board {
     {
         int count = 0;
         //Start by checking if you can go the direction
-        if(column + x > width() -1 || yplacement + y > height() - 1)
+        if(column + x >= width()  || x < 0 || yplacement + y >= height() || y < 0)
         {
             return count;
         }
