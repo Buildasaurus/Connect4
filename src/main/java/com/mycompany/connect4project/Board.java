@@ -140,13 +140,10 @@ public class Board {
             {
                 count += checkDirection(directions[i][j][0], 
                         directions[i][j][1], column, yplacement);
-                System.out.println(count);
-                System.out.println("i er: " + i);
+
                 if (count >= 3)
-                {
-                    System.out.println("jaa");
                     return true;
-                }
+
             }
         }
         return false;
